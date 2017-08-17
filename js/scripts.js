@@ -1,30 +1,38 @@
 //Backend Logic
-function userSentence (){
-  var userInput = [$("#sentence").val()].toString();
-  var cloneuserInput = userInput.split("");
-    for(var index= 0; index<cloneuserInput.length; index++){
-      if (cloneuserInput[index]==="a" || cloneuserInput[index]==="A" || cloneuserInput[index]==="e" || cloneuserInput[index]==="E" || cloneuserInput[index]==="i" || cloneuserInput[index]==="I" || cloneuserInput[index]==="o" || cloneuserInput[index]==="O" || cloneuserInput[index]==="u" || cloneuserInput[index]==="U"){
-    cloneuserInput[index] = "-";
+//removeVowels function takes the split sentence, checks for vowels and substitutes them with -
+function removeVowels (splitSentence){
+  
+    for(var index= 0; index<splitSentence.length; index++){
+      if (splitSentence[index]==="a" || splitSentence[index]==="A" || splitSentence[index]==="e" || splitSentence[index]==="E" || splitSentence[index]==="i" || splitSentence[index]==="I" || splitSentence[index]==="o" || splitSentence[index]==="O" || splitSentence[index]==="u" || splitSentence[index]==="U"){
+    splitSentence[index] = "-";
      }
-      console.log(cloneuserInput);
+      console.log(splitSentence);
     };
-    return cloneuserInput;
+    return splitSentence;
 }
 
 //Front-End Logic
 $(document).ready(function(){
   $(".puzzle form").submit(function(event){
     event.preventDefault();
+    //Store the user input into an array
 var userInput = [$("#sentence").val()].toString();
+//Test
+//console.log(userInput);
+
 //Clone the Array and Split it
 var cloneuserInput = userInput.split("");
-console.log(cloneuserInput);
+//Test
+//console.log(cloneuserInput);
 
-var jointoutput =userSentence();
-console.log(jointoutput());
-var joinInput.join(" ");
-console.log(joinInput);
-  $(".output").text("<p>" + joinInput + "</p>");
+//Calling the removeVowels to work on the variable cloneUserInput inside a new variable newSentence
+var newSentence =removeVowels(cloneuserInput).join("");
+//Test
+//console.log(newSentence);
+
+
+// Show newSentence inside a new paragraph in the division class output
+  $(".output").append("<p>" + newSentence + "</p>");
 
 });
 });
